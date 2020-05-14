@@ -5,7 +5,7 @@ from sql_queries import select_queries
 
 def get_results(cur, conn):
     """
-    run some the select queries 
+    Run some the select queries.
     """
     for query in select_queries:
         print('\nRunning: ' + query)
@@ -18,7 +18,7 @@ def get_results(cur, conn):
 
 def main():
     """
-    Run queries on the staging and dimensional tables to validate that the project has been created successfully
+    Run queries on the staging and dimensional tables to validate that the project has been created successfully.
     """
     config = configparser.ConfigParser()
     config.read('dwh.cfg')

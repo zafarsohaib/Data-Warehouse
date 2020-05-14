@@ -65,13 +65,13 @@ CONSTRAINT ss_uq UNIQUE (artist_id, song_id)
 
 songplay_table_create = ("""
 CREATE TABLE IF NOT EXISTS songplays (
-    songplay_id int    IDENTITY (1,1), 
-    start_time  timestamp SORTKEY, 
-    user_id     int DISTKEY, 
+    songplay_id int  IDENTITY (1,1), 
+    start_time  timestamp   NOT NULL SORTKEY, 
+    user_id     int         NOT NULL DISTKEY, 
     level       varchar, 
-    song_id     varchar, 
-    artist_id   varchar, 
-    session_id  int, 
+    song_id     varchar     NOT NULL, 
+    artist_id   varchar     NOT NULL, 
+    session_id  int         NOT NULL, 
     location    varchar, 
     user_agent  varchar, 
 CONSTRAINT songplay UNIQUE (start_time, user_id, session_id), 
@@ -86,7 +86,7 @@ FOREIGN KEY (artist_id) REFERENCES artists (artist_id)
 user_table_create = ("""
 CREATE TABLE IF NOT EXISTS users (
     row_id int IDENTITY (1,1), 
-    user_id    int     SORTKEY DISTKEY, 
+    user_id    int       NOT NULL SORTKEY DISTKEY, 
     first_name varchar, 
     last_name  varchar, 
     gender     varchar, 
@@ -100,7 +100,7 @@ song_table_create = ("""
 CREATE TABLE IF NOT EXISTS songs 
 (
     row_id int IDENTITY (1,1),
-    song_id varchar SORTKEY DISTKEY, 
+    song_id varchar NOT NULL SORTKEY DISTKEY, 
     title varchar, 
     artist_id varchar, 
     year int, 
@@ -113,7 +113,7 @@ PRIMARY KEY (song_id)
 artist_table_create = ("""
 CREATE TABLE IF NOT EXISTS artists (
     row_id int IDENTITY (1,1),
-    artist_id varchar SORTKEY DISTKEY, 
+    artist_id varchar NOT NULL SORTKEY DISTKEY, 
     name varchar, 
     location varchar, 
     latitude numeric, 
@@ -126,7 +126,7 @@ PRIMARY KEY (artist_id)
 time_table_create = ("""
 CREATE TABLE IF NOT EXISTS time (
     row_id int IDENTITY (1,1),
-    start_time timestamp SORTKEY DISTKEY, 
+    start_time timestamp NOT NULL SORTKEY DISTKEY, 
     hour int, 
     day int, 
     week int, 
